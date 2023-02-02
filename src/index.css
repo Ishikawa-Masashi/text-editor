@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cm-editor * {
+  font-family: "JetBrains Mono" !important;
+}
+
+html[platform="darwin"] * {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter";
+}
+
+html[platform="linux"] * {
+  font-family: "Fira Sans", "Ubuntu", "Inter";
+}
+
+html[platform="win"] * {
+  font-family: "Inter", "Segoe UI";
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.xterm-screen canvas {
+  z-index: 0 !important;
+}
+
+* ::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+* ::-webkit-scrollbar-thumb {
+  background: rgb(160, 160, 160);
+  border-radius: 3px;
+}
+
+* ::-webkit-scrollbar-thumb:hover {
+  background: rgb(200, 200, 200);
+}
+
+* ::-webkit-scrollbar-corner {
+  display: none !important;
+}
+
+.Resizer {
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+.Resizer.horizontal {
+  padding-top: 5px;
+  height: 2px;
+  cursor: row-resize;
+  background: transparent;
+  border-bottom: 1px solid  rgb(50, 50, 50);
+}
+
+.Resizer.horizontal:hover {
+  border-bottom: 1px solid  rgb(100, 100, 100);
+}
+
+.Resizer.vertical {
+  width: 6px;
+  background: transparent;
+  border-right: 1px solid rgb(50, 50, 50);
+  cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+  border-right: 1px solid rgb(100, 100, 100);
+}
+
+.DragLayer {
+  pointer-events: none;
+}
+
+.DragLayer.resizing {
+  pointer-events: auto;
+}
+
+.DragLayer.horizontal {
+  cursor: row-resize;
+}
+
+.DragLayer.vertical {
+  cursor: col-resize;
+}

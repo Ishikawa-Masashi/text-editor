@@ -1,0 +1,16 @@
+.dockerignore
+.DS_Store
+.gitpod.Dockerfile
+.idea
+
+*.local
+*.log
+*/graviton.js
+
+dist
+dist-ssr
+node_modules/
+scripts
+target
+WixTools
+yarn.lock
