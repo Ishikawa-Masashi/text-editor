@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import styled from "styled-components";
-import { showedWindowsState } from "../../state/state";
-import { useTranslation } from "react-i18next";
-import WindowBackground from "../Window/WindowBackground";
-import { Option, PromptOptions, TransatedOption } from "./Prompt.types";
-import { PromptOption, StyledPromptOption } from "./PromptOption";
-import { PromptInput } from "./PromptInput";
-import PromptContainer from "./PromptContainer";
-import PromptOptionsList from "./PromptOptionsList";
+import React, { useEffect, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
+import { showedWindowsState } from '../../state/state';
+import { useTranslation } from 'react-i18next';
+import WindowBackground from '../Window/WindowBackground';
+import { Option, PromptOptions, TransatedOption } from './Prompt.types';
+import { PromptOption, StyledPromptOption } from './PromptOption';
+import { PromptInput } from './PromptInput';
+import PromptContainer from './PromptContainer';
+import PromptOptionsList from './PromptOptionsList';
 
 export const StyledPrompt = styled.div`
   user-select: none;
@@ -22,17 +22,17 @@ export const StyledPrompt = styled.div`
   justify-content: center;
 `;
 
-export default function PromptWindow(
-  { options, selectedIndex = 0 }: PromptOptions,
-) {
+export default function PromptWindow({
+  options,
+  selectedIndex = 0,
+}: PromptOptions) {
   const refBackground = useRef(null);
   const refInput = useRef<HTMLInputElement>(null);
   const setShowedWindows = useSetRecoilState(showedWindowsState);
   const { t } = useTranslation();
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number>(
-    selectedIndex,
-  );
-  const [inputSearch, setInputSearch] = useState("");
+  const [selectedOptionIndex, setSelectedOptionIndex] =
+    useState<number>(selectedIndex);
+  const [inputSearch, setInputSearch] = useState('');
   const [filteredOptions, setFilteredOptions] = useState<
     Array<TransatedOption>
   >([]);
@@ -59,7 +59,7 @@ export default function PromptWindow(
 
   function onArrowDown(e: KeyboardEvent) {
     switch (e.key) {
-      case "ArrowUp":
+      case 'ArrowUp':
         setSelectedOptionIndex((selectedOptionIndex) => {
           if (selectedOptionIndex > 0) {
             return selectedOptionIndex - 1;
@@ -68,7 +68,7 @@ export default function PromptWindow(
         });
         focusInput();
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         setSelectedOptionIndex((selectedOptionIndex) => {
           if (selectedOptionIndex < filteredOptions.length - 1) {
             return selectedOptionIndex + 1;
@@ -82,7 +82,7 @@ export default function PromptWindow(
 
   function onEnterDown(e: KeyboardEvent) {
     switch (e.key) {
-      case "Enter": {
+      case 'Enter': {
         const selectedOption = filteredOptions[selectedOptionIndex];
         if (selectedOption) {
           selectedOption.option.onSelected({
@@ -99,7 +99,7 @@ export default function PromptWindow(
   }
 
   function translateOption(option: Option) {
-    const text = t(option.label.text, option.label.props);
+    const text = t(option.label.text, option.label.props as any);
     return { option, text };
   }
 
@@ -109,7 +109,9 @@ export default function PromptWindow(
 
   // Translate and filter all the options when the input is changed
   useEffect(() => {
-    setFilteredOptions(options.map(translateOption).filter(filterOption));
+    setFilteredOptions(
+      options.map(translateOption).filter(filterOption as any) as any
+    );
     setSelectedOptionIndex(selectedIndex);
   }, [inputSearch, options]);
 
@@ -117,17 +119,17 @@ export default function PromptWindow(
   useEffect(() => {
     focusInput();
 
-    window.addEventListener("keydown", onArrowDown);
+    window.addEventListener('keydown', onArrowDown);
     return () => {
-      window.removeEventListener("keydown", onArrowDown);
+      window.removeEventListener('keydown', onArrowDown);
     };
   }, [filteredOptions]);
 
   // Listen for Enter
   useEffect(() => {
-    window.addEventListener("keydown", onEnterDown);
+    window.addEventListener('keydown', onEnterDown);
     return () => {
-      window.removeEventListener("keydown", onEnterDown);
+      window.removeEventListener('keydown', onEnterDown);
     };
   }, [filteredOptions, selectedOptionIndex]);
 
@@ -155,7 +157,7 @@ export default function PromptWindow(
             ))}
             {filteredOptions.length === 0 && (
               <StyledPromptOption isSelected={true}>
-                {t("prompts.NoResults")}
+                {t('prompts.NoResults')}
               </StyledPromptOption>
             )}
           </PromptOptionsList>

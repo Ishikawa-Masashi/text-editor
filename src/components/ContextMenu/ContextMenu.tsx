@@ -130,7 +130,7 @@ export default function ContextMenu({
 
         return (
           <ContextMenuButton key={label.text} onClick={onClick}>
-            {t(label.text, label.props)}
+            {t(label.text, label.props as any) as any}
           </ContextMenuButton>
         );
       })}

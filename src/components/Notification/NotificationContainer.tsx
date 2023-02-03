@@ -1,20 +1,20 @@
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import { Notification } from "../../modules/notification";
-import { ReactSVG } from "react-svg";
-import { Transition } from "react-transition-group";
-import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { Notification } from '../../modules/notification';
+import { ReactSVG } from 'react-svg';
+import { Transition } from 'react-transition-group';
+import { useEffect, useState } from 'react';
 
 const transitionStyles: Record<string, React.CSSProperties> = {
-  entering: { opacity: 1, transform: "translateX(0px)" },
-  entered: { opacity: 1, transform: "translateX(0px)" },
+  entering: { opacity: 1, transform: 'translateX(0px)' },
+  entered: { opacity: 1, transform: 'translateX(0px)' },
   exiting: {
     opacity: 0,
-    transform: "translateX(100px)",
+    transform: 'translateX(100px)',
     height: 0,
     padding: 0,
   },
-  exited: { opacity: 0, transform: "translateX(100px)", height: 0, padding: 0 },
+  exited: { opacity: 0, transform: 'translateX(100px)', height: 0, padding: 0 },
 };
 
 const NotificationBody = styled.div`
@@ -23,34 +23,34 @@ const NotificationBody = styled.div`
   height: 70px;
   border-radius: 7px;
   padding: 15px;
-  color: ${({ theme }) => theme.elements.notification.text.color};;
+  color: ${({ theme }) => theme.elements.notification.text.color};
   position: relative;
   margin-top: 3px;
   transition: 0.1s;
 `;
 
 const NotificationTitle = styled.h5`
- margin: 0px 0px 10px 0px;
- user-select: none;
+  margin: 0px 0px 10px 0px;
+  user-select: none;
 `;
 
 const NotificationContent = styled.p`
- margin: 0;
- font-size: 13px;
+  margin: 0;
+  font-size: 13px;
 `;
 
 const NotificationClose = styled(ReactSVG)`
- position: absolute;
- top: 10px;
- right: 15px;
- & svg {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  & svg {
     height: 10px;
-    width: 10px; 
+    width: 10px;
     & path {
-        stroke: ${({ theme }) => theme.elements.notification.close.fill};
+      stroke: ${({ theme }) => theme.elements.notification.close.fill};
     }
- }
- &:hover svg > path {
+  }
+  &:hover svg > path {
     stroke: ${({ theme }) => theme.elements.notification.close.hover.fill};
   }
 `;
@@ -60,9 +60,10 @@ interface NotificationOptions {
   close: () => void;
 }
 
-export default function NotificationContainer(
-  { notification, close }: NotificationOptions,
-) {
+export default function NotificationContainer({
+  notification,
+  close,
+}: NotificationOptions) {
   const [mounted, setMounted] = useState(false);
   const { t } = useTranslation();
   const { title, content } = notification;
@@ -86,9 +87,11 @@ export default function NotificationContainer(
             src="/icons/close_cross.svg"
             onClick={closeNotification}
           />
-          <NotificationTitle>{t(title.text, title.props)}</NotificationTitle>
+          <NotificationTitle>
+            {t(title.text, title.props as any) as any}
+          </NotificationTitle>
           <NotificationContent>
-            {t(content.text, content.props)}
+            {t(content.text, content.props as any) as any}
           </NotificationContent>
         </NotificationBody>
       )}

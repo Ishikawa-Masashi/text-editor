@@ -88,8 +88,8 @@ export default function PopupContainer({
         width={width}
       >
         <div className="popup">
-          <h5>{t(title.text, title.props)}</h5>
-          <pre>{t(content.text, title.props)}</pre>
+          <h5>{t(title.text, title.props as any) as any}</h5>
+          <pre>{t(content.text, title.props as any) as any}</pre>
           <div>
             {buttons.map(({ label, action }, i) => {
               const buttonAction = () => {
@@ -98,7 +98,7 @@ export default function PopupContainer({
               };
               return (
                 <WindowButton expanded={true} key={i} onClick={buttonAction}>
-                  {t(label.text, label.props)}
+                  {t(label.text, label.props as any) as any}
                 </WindowButton>
               );
             })}
