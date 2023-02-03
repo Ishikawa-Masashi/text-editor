@@ -6,7 +6,6 @@ import RecoilNexus from 'recoil-nexus';
 import SidePanelsView from './SidePanelsView';
 import ViewsView from './ViewsView';
 import Theme from '../Providers/ThemeProvider';
-import { SplitPane } from 'react-multi-split-pane';
 // import { isTauri } from "../../services/commands";
 import ExplorerPanel from '../../panels/explorer';
 import StatusBarView from './StatusBarView';
@@ -22,6 +21,7 @@ import NotificationsView from './NotificationsView';
 import FakeClient from '../../services/clients/fake_client';
 import SerachPanel from '../../panels/search/search';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { SplitPane } from '../SplitPane';
 
 /*
  * Retrieve the authentication token

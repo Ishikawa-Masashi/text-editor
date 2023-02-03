@@ -1,7 +1,7 @@
-import { SplitPane } from 'react-multi-split-pane';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { openedViewsAndTabs } from '../../state/state';
+import { SplitPane } from '../SplitPane';
 import ViewPanelView from '../Tabs/ViewPanelView';
 
 const TabsContainer = styled.div`
